@@ -1,44 +1,34 @@
-# FastifyRequestLogger
+# FastifyGracefulExit
 
-[![npm version](https://img.shields.io/npm/v/@mgcrea/fastify-request-logger.svg)](https://github.com/mgcrea/fastify-request-logger/releases)
-[![license](https://img.shields.io/npm/l/@mgcrea/fastify-request-logger)](https://tldrlegal.com/license/mit-license)
-[![build status](https://img.shields.io/github/workflow/status/mgcrea/fastify-request-logger/ci)](https://github.com/mgcrea/fastify-request-logger/actions)
-[![dependencies status](https://img.shields.io/david/mgcrea/fastify-request-logger)](https://david-dm.org/mgcrea/fastify-request-logger)
-[![devDependencies status](https://img.shields.io/david/dev/mgcrea/fastify-request-logger)](https://david-dm.org/mgcrea/fastify-request-logger?type=dev)
+[![npm version](https://img.shields.io/npm/v/@mgcrea/fastify-graceful-exit.svg)](https://github.com/mgcrea/fastify-graceful-exit/releases)
+[![license](https://img.shields.io/npm/l/@mgcrea/fastify-graceful-exit)](https://tldrlegal.com/license/mit-license)
+[![build status](https://img.shields.io/github/workflow/status/mgcrea/fastify-graceful-exit/ci)](https://github.com/mgcrea/fastify-graceful-exit/actions)
+[![dependencies status](https://img.shields.io/david/mgcrea/fastify-graceful-exit)](https://david-dm.org/mgcrea/fastify-graceful-exit)
+[![devDependencies status](https://img.shields.io/david/dev/mgcrea/fastify-graceful-exit)](https://david-dm.org/mgcrea/fastify-graceful-exit?type=dev)
 
-Compact request logger plugin for [fastify](https://github.com/fastify/fastify).
-
-- Relies on [chalk](https://github.com/chalk/chalk) for the coloring.
-
-- Usually used along [@mgcrea/pino-pretty-compact](https://github.com/mgcrea/pino-pretty-compact) to prettify logs.
+Graceful exit for [fastify](https://github.com/fastify/fastify).
 
 - Built with [TypeScript](https://www.typescriptlang.org/) for static type checking with exported types along the
   library.
 
-## Preview
-
-<p align="left">
-  <img src="https://raw.githubusercontent.com/mgcrea/fastify-request-logger/master/docs/preview.png" alt="Preview" />
-</p>
-
 ## Usage
 
 ```bash
-npm install fastify-cookie @mgcrea/fastify-request-logger --save
+npm install fastify-cookie @mgcrea/fastify-graceful-exit --save
 # or
-yarn add fastify-cookie @mgcrea/fastify-request-logger
+yarn add fastify-cookie @mgcrea/fastify-graceful-exit
 ```
 
 You probably want to disable fastify own request logging using the `disableRequestLogging` option.
 
 ```ts
 import createFastify, { FastifyInstance, FastifyServerOptions } from 'fastify';
-import fastifyRequestLogger from '@mgcrea/fastify-request-logger';
+import fastifyGracefulExit from '@mgcrea/fastify-graceful-exit';
 
 export const buildFastify = (options: FastifyServerOptions = {}): FastifyInstance => {
   const fastify = createFastify({ disableRequestLogging: true, ...options });
 
-  fastify.register(fastifyRequestLogger);
+  fastify.register(fastifyGracefulExit, { timeout: 3000 });
 
   return fastify;
 };
