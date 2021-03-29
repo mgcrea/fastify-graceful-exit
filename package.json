@@ -1,6 +1,6 @@
 {
   "name": "@mgcrea/fastify-graceful-exit",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Graceful exit for your fastify application",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
