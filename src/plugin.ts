@@ -24,8 +24,14 @@ export const plugin: FastifyPluginAsync<FastifyGracefulExitOptions> = async (fas
     await closePromise;
     process.exit(0);
   };
-  process.on('uncaughtException', gracefullyClose);
-  process.on('unhandledRejection', gracefullyClose);
+  process.on('uncaughtException', (err) => {
+    log.error({ err }, `Uncaught Exception: ${err.message}`);
+    gracefullyClose('uncaughtException');
+  });
+  process.on('unhandledRejection', (reason, promise) => {
+    log.error('Unhandled rejection at ', promise, `reason: ${reason}`);
+    gracefullyClose('unhandledRejection');
+  });
   process.on('SIGTERM', gracefullyClose);
   // Handle Ctrl+C
   process.on('SIGINT', gracefullyClose);
