@@ -8,7 +8,7 @@ export type FastifyGracefulExitOptions = {
 export const plugin: FastifyPluginAsync<FastifyGracefulExitOptions> = async (fastify, options = {}): Promise<void> => {
   const { logBindings = { plugin: 'fastify-graceful-exit' }, timeout = 3000 } = options;
   const { log } = fastify;
-  let closePromise: ReturnType<typeof fastify.close> | null = null;
+  let closePromise: Promise<undefined> | null = null;
   // Gracefully close
   const gracefullyClose = async (signal: string) => {
     if (closePromise) {
@@ -28,8 +28,8 @@ export const plugin: FastifyPluginAsync<FastifyGracefulExitOptions> = async (fas
     log.error({ err }, `Uncaught Exception: ${err.message}`);
     gracefullyClose('uncaughtException');
   });
-  process.on('unhandledRejection', (reason, promise) => {
-    log.error('Unhandled rejection at ', promise, `reason: ${reason}`);
+  process.on('unhandledRejection', (reason, _promise) => {
+    log.error({ reason }, `Unhandled Rejection: ${reason}`);
     gracefullyClose('unhandledRejection');
   });
   process.on('SIGTERM', gracefullyClose);
