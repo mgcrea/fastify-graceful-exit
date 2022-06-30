@@ -5,12 +5,12 @@ type BuilfFastifyOptions = FastifyServerOptions & { gracefulExit?: FastifyGracef
 
 const logger: FastifyLoggerOptions = {
   level: 'debug',
-  prettyPrint: {
-    colorize: true,
-    ignore: 'pid,hostname',
-    translateTime: 'yyyy-mm-dd HH:MM:ss.l',
-    levelFirst: true,
-  },
+  // prettyPrint: {
+  //   colorize: true,
+  //   ignore: 'pid,hostname',
+  //   translateTime: 'yyyy-mm-dd HH:MM:ss.l',
+  //   levelFirst: true,
+  // },
 };
 
 export const buildFastify = (options: BuilfFastifyOptions = {}): FastifyInstance => {

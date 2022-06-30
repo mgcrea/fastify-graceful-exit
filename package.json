@@ -9,12 +9,14 @@
   "license": "MIT",
   "access": "public",
   "scripts": {
-    "build": "rm -rf lib/*; tsc --build",
-    "test": "jest",
-    "typecheck": "tsc --noEmit",
-    "prettycheck": "prettier --check 'src/' --check 'test/'",
+    "start": "npm run spec -- --watch",
+    "build": "rimraf lib/*; tsc --build",
     "lint": "eslint src/ test/",
-    "prepare": "npm run build"
+    "prettycheck": "prettier --check src/ test/",
+    "typecheck": "tsc --noEmit",
+    "spec": "DEBUG=fastify-session*,prisma-query jest --runInBand",
+    "test": "npm run lint && npm run prettycheck && npm run typecheck && npm run spec",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "fastify",
@@ -22,24 +24,24 @@
     "exit"
   ],
   "devDependencies": {
-    "@tsconfig/node10": "^1.0.8",
-    "@types/ioredis": "^4.28.1",
-    "@types/jest": "^27.0.2",
-    "@types/node": "^16.11.7",
-    "@typescript-eslint/eslint-plugin": "^5.3.1",
-    "@typescript-eslint/parser": "^5.3.1",
-    "eslint": "^8.2.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-jest": "^25.2.4",
-    "eslint-plugin-prettier": "^4.0.0",
-    "fastify": "^3.23.1",
-    "jest": "^27.3.1",
-    "pino-pretty": "^7.2.0",
-    "prettier": "^2.4.1",
-    "ts-jest": "^27.0.7",
-    "typescript": "^4.4.4"
+    "@tsconfig/node14": "^1.0.3",
+    "@types/ioredis": "^4.28.10",
+    "@types/jest": "^28.1.3",
+    "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jest": "^26.5.3",
+    "eslint-plugin-prettier": "^4.2.1",
+    "fastify": "^4.2.0",
+    "jest": "^28.1.2",
+    "pino-pretty": "^8.1.0",
+    "prettier": "^2.7.1",
+    "ts-jest": "^28.0.5",
+    "typescript": "^4.7.4"
   },
   "dependencies": {
-    "fastify-plugin": "^3.0.0"
+    "fastify-plugin": "^3.0.1"
   }
 }

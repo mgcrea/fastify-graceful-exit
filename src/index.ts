@@ -4,6 +4,6 @@ import { plugin } from './plugin';
 export type { FastifyGracefulExitOptions } from './plugin';
 
 export default fastifyPlugin(plugin, {
-  fastify: '3.x',
+  fastify: '4.x',
   name: 'fastify-graceful-exit',
 });

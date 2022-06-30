@@ -4,7 +4,7 @@ describe('with fastify path', () => {
   const fastify = buildFastify({});
   beforeAll(async () => {
     await fastify.ready();
-    await fastify.listen(3000);
+    await fastify.listen({ port: 3000 });
   });
   // afterAll(() => {
   //   fastify.close();
@@ -12,5 +12,6 @@ describe('with fastify path', () => {
   it('should properly log a GET request', async () => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     process.kill(process.pid, 'SIGTERM');
+    expect(1).toBe(1);
   });
 });
