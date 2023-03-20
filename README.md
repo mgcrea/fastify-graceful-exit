@@ -1,29 +1,47 @@
-# FastifyGracefulExit
+# Fastify GracefulExit Plugin
 
-[![npm version](https://img.shields.io/npm/v/@mgcrea/fastify-graceful-exit.svg)](https://github.com/mgcrea/fastify-graceful-exit/releases)
-[![license](https://img.shields.io/npm/l/@mgcrea/fastify-graceful-exit)](https://tldrlegal.com/license/mit-license)
-[![build status](https://img.shields.io/github/workflow/status/mgcrea/fastify-graceful-exit/ci)](https://github.com/mgcrea/fastify-graceful-exit/actions)
-[![dependencies status](https://img.shields.io/david/mgcrea/fastify-graceful-exit)](https://david-dm.org/mgcrea/fastify-graceful-exit)
-[![devDependencies status](https://img.shields.io/david/dev/mgcrea/fastify-graceful-exit)](https://david-dm.org/mgcrea/fastify-graceful-exit?type=dev)
+<!-- markdownlint-disable MD033 -->
+<p align="center">
+  <a href="https://www.npmjs.com/package/@mgcrea/fastify-graceful-exit">
+    <img src="https://img.shields.io/npm/v/@mgcrea/fastify-graceful-exit.svg?style=for-the-badge" alt="npm version" />
+  </a>
+  <a href="https://www.npmjs.com/package/@mgcrea/fastify-graceful-exit">
+    <img src="https://img.shields.io/npm/dt/@mgcrea/fastify-graceful-exit.svg?style=for-the-badge" alt="npm total downloads" />
+  </a>
+  <a href="https://www.npmjs.com/package/@mgcrea/fastify-graceful-exit">
+    <img src="https://img.shields.io/npm/dm/@mgcrea/fastify-graceful-exit.svg?style=for-the-badge" alt="npm monthly downloads" />
+  </a>
+  <a href="https://www.npmjs.com/package/@mgcrea/fastify-graceful-exit">
+    <img src="https://img.shields.io/npm/l/@mgcrea/fastify-graceful-exit.svg?style=for-the-badge" alt="npm license" />
+  </a>
+  <br />
+  <a href="https://github.com/mgcrea/fastify-graceful-exit/actions/workflows/main.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/mgcrea/fastify-graceful-exit/main.yml?style=for-the-badge&branch=master" alt="build status" />
+  </a>
+  <a href="https://depfu.com/github/mgcrea/fastify-graceful-exit">
+    <img src="https://img.shields.io/depfu/dependencies/github/mgcrea/fastify-graceful-exit?style=for-the-badge" alt="dependencies status" />
+  </a>
+</p>
+<!-- markdownlint-enable MD037 -->
 
-Graceful exit for [fastify](https://github.com/fastify/fastify).
+Graceful exit plugin for [fastify](https://github.com/fastify/fastify).
 
-- Built with [TypeScript](https://www.typescriptlang.org/) for static type checking with exported types along the
-  library.
+- Written in [TypeScript](https://www.typescriptlang.org/) for static type checking with exported types along the library.
+- Built by [tsup](https://tsup.egoist.dev) to provide both CommonJS and ESM packages.
 
 ## Usage
 
 ```bash
 npm install fastify-cookie @mgcrea/fastify-graceful-exit --save
 # or
-yarn add fastify-cookie @mgcrea/fastify-graceful-exit
+pnpm add fastify-cookie @mgcrea/fastify-graceful-exit
 ```
 
 You probably want to disable fastify own request logging using the `disableRequestLogging` option.
 
 ```ts
-import createFastify, { FastifyInstance, FastifyServerOptions } from 'fastify';
-import fastifyGracefulExit from '@mgcrea/fastify-graceful-exit';
+import createFastify, { FastifyInstance, FastifyServerOptions } from "fastify";
+import fastifyGracefulExit from "@mgcrea/fastify-graceful-exit";
 
 export const buildFastify = (options: FastifyServerOptions = {}): FastifyInstance => {
   const fastify = createFastify({ disableRequestLogging: true, ...options });
