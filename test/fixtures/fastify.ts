@@ -1,10 +1,10 @@
-import createFastify, { FastifyInstance, FastifyLoggerOptions, FastifyServerOptions } from 'fastify';
-import fastifyGracefulExit, { FastifyGracefulExitOptions } from 'src/index';
+import createFastify, { FastifyInstance, FastifyLoggerOptions, FastifyServerOptions } from "fastify";
+import fastifyGracefulExit, { FastifyGracefulExitOptions } from "src/index";
 
 type BuilfFastifyOptions = FastifyServerOptions & { gracefulExit?: FastifyGracefulExitOptions };
 
 const logger: FastifyLoggerOptions = {
-  level: 'debug',
+  level: "debug",
   // prettyPrint: {
   //   colorize: true,
   //   ignore: 'pid,hostname',
@@ -19,12 +19,11 @@ export const buildFastify = (options: BuilfFastifyOptions = {}): FastifyInstance
 
   fastify.register(fastifyGracefulExit, gracefulExitOptions);
 
-  fastify.get('/', (request, reply) => {
-    reply.send({ hello: 'world', method: request.method });
+  fastify.get("/", (request, reply) => {
+    reply.send({ hello: "world", method: request.method });
   });
-
-  fastify.post('/', (request, reply) => {
-    reply.send({ hello: 'world', method: request.method });
+  fastify.post("/", (request, reply) => {
+    reply.send({ hello: "world", method: request.method });
   });
 
   return fastify;

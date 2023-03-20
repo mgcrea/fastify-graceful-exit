@@ -1,12 +1,15 @@
-import type { FastifyPluginAsync } from 'fastify';
+import type { FastifyPluginAsync } from "fastify";
 
 export type FastifyGracefulExitOptions = {
   logBindings?: Record<string, unknown>;
   timeout?: number;
 };
 
-export const plugin: FastifyPluginAsync<FastifyGracefulExitOptions> = async (fastify, options = {}): Promise<void> => {
-  const { logBindings = { plugin: 'fastify-graceful-exit' }, timeout = 3000 } = options;
+export const plugin: FastifyPluginAsync<FastifyGracefulExitOptions> = async (
+  fastify,
+  options = {}
+): Promise<void> => {
+  const { logBindings = { plugin: "fastify-graceful-exit" }, timeout = 3000 } = options;
   const { log } = fastify;
   let closePromise: Promise<undefined> | null = null;
   // Gracefully close
@@ -24,17 +27,17 @@ export const plugin: FastifyPluginAsync<FastifyGracefulExitOptions> = async (fas
     await closePromise;
     process.exit(0);
   };
-  process.on('uncaughtException', (err) => {
+  process.on("uncaughtException", (err) => {
     log.error({ err }, `Uncaught Exception: ${err.message}`);
-    gracefullyClose('uncaughtException');
+    gracefullyClose("uncaughtException");
   });
-  process.on('unhandledRejection', (reason, _promise) => {
+  process.on("unhandledRejection", (reason, _promise) => {
     log.error({ reason }, `Unhandled Rejection: ${reason}`);
-    gracefullyClose('unhandledRejection');
+    gracefullyClose("unhandledRejection");
   });
-  process.on('SIGTERM', gracefullyClose);
+  process.on("SIGTERM", gracefullyClose);
   // Handle Ctrl+C
-  process.on('SIGINT', gracefullyClose);
+  process.on("SIGINT", gracefullyClose);
   // Handle nodemon-like restarts
-  process.on('SIGUSR2', gracefullyClose);
+  process.on("SIGUSR2", gracefullyClose);
 };

@@ -2,46 +2,62 @@
   "name": "@mgcrea/fastify-graceful-exit",
   "version": "0.4.0",
   "description": "Graceful exit for your fastify application",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "author": "Olivier Louvignes <olivier@mgcrea.io>",
-  "repository": "github:mgcrea/fastify-graceful-exit",
+  "repository": "github:mgcrea/fastify-session-prisma-store",
   "license": "MIT",
-  "access": "public",
-  "scripts": {
-    "start": "npm run spec -- --watch",
-    "build": "rimraf lib/*; tsc --build",
-    "lint": "eslint src/ test/",
-    "prettycheck": "prettier --check src/ test/",
-    "typecheck": "tsc --noEmit",
-    "spec": "DEBUG=fastify-session*,prisma-query jest --runInBand",
-    "test": "npm run lint && npm run prettycheck && npm run typecheck && npm run spec",
-    "prepublishOnly": "npm run build"
+  "type": "module",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
   },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "engines": {
+    "node": ">=12"
+  },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "fastify",
     "graceful",
     "exit"
   ],
-  "devDependencies": {
-    "@tsconfig/node14": "^1.0.3",
-    "@types/ioredis": "^4.28.10",
-    "@types/jest": "^28.1.3",
-    "@types/node": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.30.0",
-    "@typescript-eslint/parser": "^5.30.0",
-    "eslint": "^8.18.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-jest": "^26.5.3",
-    "eslint-plugin-prettier": "^4.2.1",
-    "fastify": "^4.2.0",
-    "jest": "^28.1.2",
-    "pino-pretty": "^8.1.0",
-    "prettier": "^2.7.1",
-    "ts-jest": "^28.0.5",
-    "typescript": "^4.7.4"
+  "scripts": {
+    "start": "npm run spec -- --watch",
+    "dev": "vitest --no-threads",
+    "build": "tsup --entry src/index.ts --format cjs,esm --sourcemap --dts --clean --entry src/bin/cli.ts",
+    "lint": "eslint src/ test/",
+    "prettycheck": "prettier --check src/ test/",
+    "prettify": "prettier --write src/ test/",
+    "typecheck": "tsc --noEmit",
+    "spec": "vitest --run --no-threads",
+    "test": "npm run lint && npm run prettycheck && npm run typecheck && npm run spec",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "fastify-plugin": "^3.0.1"
+    "fastify-plugin": "^4.5.0"
+  },
+  "devDependencies": {
+    "@mgcrea/eslint-config-node": "^0.2.3",
+    "@mgcrea/fastify-session": "^1.1.0",
+    "@prisma/client": "^4.11.0",
+    "@tsconfig/node-lts-strictest-esm": "^18.12.1",
+    "@types/debug": "^4.1.7",
+    "@types/node": "^18.15.3",
+    "benchmark": "^2.1.4",
+    "eslint": "^8.36.0",
+    "fastify": "^4.15.0",
+    "prettier": "^2.8.5",
+    "prettier-plugin-organize-imports": "^3.2.2",
+    "prisma": "^4.11.0",
+    "tsup": "^6.7.0",
+    "tsx": "^3.12.5",
+    "typescript": "^5.0.2",
+    "vitest": "^0.29.4"
   }
 }
