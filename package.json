@@ -36,25 +36,24 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "fastify-plugin": "^4.5.0"
+    "fastify-plugin": "^4.5.1"
   },
   "devDependencies": {
-    "@mgcrea/eslint-config-node": "^0.2.3",
-    "@mgcrea/fastify-session": "^1.1.0",
-    "@prisma/client": "^4.11.0",
+    "@mgcrea/eslint-config-node": "^0.8.1",
+    "@mgcrea/fastify-session": "^2.1.1",
+    "@prisma/client": "^5.2.0",
     "@tsconfig/node-lts": "^18.12.5",
     "@tsconfig/strictest": "^2.0.2",
-    "@types/debug": "^4.1.7",
-    "@types/node": "^18.15.3",
+    "@types/debug": "^4.1.8",
+    "@types/node": "^18.17.14",
     "benchmark": "^2.1.4",
-    "eslint": "^8.36.0",
-    "fastify": "^4.15.0",
-    "prettier": "^2.8.5",
-    "prettier-plugin-organize-imports": "^3.2.2",
-    "prisma": "^4.11.0",
-    "tsup": "^6.7.0",
-    "tsx": "^3.12.5",
-    "typescript": "^5.0.2",
-    "vitest": "^0.29.4"
+    "eslint": "^8.48.0",
+    "fastify": "^4.22.2",
+    "prettier": "^3.0.3",
+    "prettier-plugin-organize-imports": "^3.2.3",
+    "tsup": "^7.2.0",
+    "tsx": "^3.12.8",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.3"
   }
 }

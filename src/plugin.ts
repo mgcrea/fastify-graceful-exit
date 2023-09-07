@@ -7,7 +7,7 @@ export type FastifyGracefulExitOptions = {
 
 export const plugin: FastifyPluginAsync<FastifyGracefulExitOptions> = async (
   fastify,
-  options = {}
+  options = {},
 ): Promise<void> => {
   const { logBindings = { plugin: "fastify-graceful-exit" }, timeout = 3000 } = options;
   const { log } = fastify;
