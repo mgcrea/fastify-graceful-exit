@@ -1,6 +1,6 @@
 import type { FastifyInstance } from "fastify";
-import { buildFastify } from "test/fixtures";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { buildFastify } from "../fixtures";
 
 // vi.mock("process", () => {
 //   const Process = vi.fn();

@@ -1,13 +1,12 @@
 {
-  "extends": "@tsconfig/node-lts-strictest-esm/tsconfig.json",
+  "extends": ["@tsconfig/node-lts/tsconfig.json", "@tsconfig/strictest/tsconfig.json"],
   "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "baseUrl": ".",
-    "outDir": "dist",
     "paths": {
-      "src/*": ["./src/*"],
       "test/*": ["./test/*"]
-    },
-    "ignoreDeprecations": "5.0"
+    }
   },
   "include": ["src", "test"]
 }

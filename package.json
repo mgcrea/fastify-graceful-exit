@@ -9,7 +9,7 @@
   "exports": {
     ".": {
       "require": "./dist/index.cjs",
-      "import": "./dist/index.js",
+      "import": "./dist/index.js"
     }
   },
   "main": "./dist/index.cjs",
@@ -42,7 +42,8 @@
     "@mgcrea/eslint-config-node": "^0.2.3",
     "@mgcrea/fastify-session": "^1.1.0",
     "@prisma/client": "^4.11.0",
-    "@tsconfig/node-lts-strictest-esm": "^18.12.1",
+    "@tsconfig/node-lts": "^18.12.5",
+    "@tsconfig/strictest": "^2.0.2",
     "@types/debug": "^4.1.7",
     "@types/node": "^18.15.3",
     "benchmark": "^2.1.4",
