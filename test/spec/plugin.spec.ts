@@ -13,7 +13,7 @@ import { buildFastify } from "../fixtures";
 
 describe("with fastify path", () => {
   let fastify: FastifyInstance;
-  const exitMock = vi.spyOn(process, "exit").mockImplementation((code?: number) => {
+  const exitMock = vi.spyOn(process, "exit").mockImplementation((code) => {
     console.log(`Exited with ${code}`);
     return undefined as never;
   });
@@ -24,7 +24,7 @@ describe("with fastify path", () => {
     await fastify.listen({ port: 3000 });
   });
 
-  afterEach(async () => {
+  afterEach(() => {
     vi.clearAllMocks();
   });
   it("should properly call exit on SIGTERM", async () => {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import type { FastifyPluginAsync } from "fastify";
 
 export type FastifyGracefulExitOptions = {
@@ -8,6 +9,7 @@ export type FastifyGracefulExitOptions = {
 export const plugin: FastifyPluginAsync<FastifyGracefulExitOptions> = async (
   fastify,
   options = {},
+  // eslint-disable-next-line @typescript-eslint/require-await
 ): Promise<void> => {
   const { logBindings = { plugin: "fastify-graceful-exit" }, timeout = 3000 } = options;
   const { log } = fastify;
@@ -27,13 +29,13 @@ export const plugin: FastifyPluginAsync<FastifyGracefulExitOptions> = async (
     await closePromise;
     process.exit(0);
   };
-  process.on("uncaughtException", (err) => {
+  process.on("uncaughtException", async (err) => {
     log.error({ err }, `Uncaught Exception: ${err.message}`);
-    gracefullyClose("uncaughtException");
+    await gracefullyClose("uncaughtException");
   });
-  process.on("unhandledRejection", (reason, _promise) => {
-    log.error({ reason }, `Unhandled Rejection: ${reason}`);
-    gracefullyClose("unhandledRejection");
+  process.on("unhandledRejection", async (reason, _promise) => {
+    log.error({ reason }, `Unhandled Rejection: ${String(reason)}`);
+    await gracefullyClose("unhandledRejection");
   });
   process.on("SIGTERM", gracefullyClose);
   // Handle Ctrl+C
